@@ -1,0 +1,52 @@
+  
+  <div class="alert alert-warning" [hidden]="alertStatus">
+      <strong>Login error!</strong> {{loginErrorMsg}} 
+  </div>
+  
+  <div class="wrapper">
+      <div class="row main">
+          <div class="col-md-3"></div>
+
+          <div class="col-md-6">
+    <form class="form-signin" (ngSubmit)="onSubmit()" [hidden]="loggedIn" #loginForm="ngForm">
+      <h2 class="clean-font">Please login</h2>
+       <hr/>
+
+      <div class="cols-sm-10">
+          <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input #Username="ngModel" type="text" class="form-control" name="Username" [(ngModel)]="username" placeholder="Username" name="username" required autofocus="" />
+            </div>
+          <div *ngIf="Username?.errors && (Username?.dirty || Username?.touched)" class="alert alert-danger">
+            <div [hidden]="!Username.errors.required">
+              User name is required!
+            </div>
+          </div>
+      </div>
+      <br>
+
+      <div class="cols-sm-10">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+            <input #Password="ngModel" type="password" class="form-control" name="Password" [(ngModel)]="password" placeholder="Password" required />
+          </div>
+        <div *ngIf="Password?.errors && (Password?.dirty || Password?.touched)" class="alert alert-danger">
+          <div [hidden]="!Password.errors.required">
+            Password is required!
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <button class="btn btn-primary btn-block"[disabled]="!loginForm.form.valid"  type="submit">Login</button>
+    </form>
+    </div>
+    <div class="col-md-3"></div>
+
+    </div>
+
+<!--     <div [hidden]="!loggedIn">
+      <h2>Welcome to Admin Portal!</h2>
+    </div> -->
+  </div>
+

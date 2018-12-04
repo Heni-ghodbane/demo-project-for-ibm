@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="row main">
+    <div class="col-md-6">
+      <h2 class="title">Create new User</h2>
+      <hr/>
+      <form method="post" (ngSubmit)="onSelectCreateUser()" #userForm="ngForm">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-user fa" aria-hidden="true"></i>
+              </span>
+              <input #firstName="ngModel" type="text" class="form-control" [(ngModel)]="first_name" id="firstName" name="firstName" roleId="firstname"
+                placeholder="Enter your first name" required="required" minlength="3" maxlength="30" />
+            </div>
+            <div *ngIf="firstName?.errors && (firstName?.dirty || firstName?.touched)" class="alert alert-danger">
+              <div [hidden]="!firstName.errors.required">
+                First name is required!
+              </div>
+              <div [hidden]="!firstName?.errors.minlength">
+                First name must be at least 5 characters long.
+              </div>
+              <div [hidden]="!firstName?.errors.maxlength">
+                First name cannot be more than 30 characters long.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName" class="cols-sm-2 control-label">Last Name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-user fa" aria-hidden="true"></i>
+              </span>
+              <input #lastName="ngModel" type="text" class="form-control" [(ngModel)]="last_name" id="lastName" name="lastName" roleId="lastName"
+                placeholder="Enter your last name" required="required" minlength="3" maxlength="30" />
+            </div>
+            <div *ngIf="lastName?.errors && (lastName?.dirty || lastName?.touched)" class="alert alert-danger">
+              <div [hidden]="!lastName.errors.required">
+                Last name is required!
+              </div>
+              <div [hidden]="!lastName?.errors.minlength">
+                Last name must be at least 5 characters long.
+              </div>
+              <div [hidden]="!lastName?.errors.maxlength">
+                Last name cannot be more than 30 characters long.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="cols-sm-2 control-label">Your Email</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-envelope fa" aria-hidden="true"></i>
+              </span>
+              <input #email="ngModel" type="text" class="form-control" [(ngModel)]="email_address" id="email" name="email" roleId="email"
+                placeholder="Enter your Email" required="required" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+            </div>
+            <div *ngIf="email?.errors && (email?.dirty || email?.touched)" class="alert alert-danger">
+              <div [hidden]="!email.errors.required">
+                E-mail is required!
+              </div>
+              <div [hidden]="!email.errors.pattern">
+                Must be a valid E-mail!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="career" class="cols-sm-2 control-label">Career</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-envelope fa" aria-hidden="true"></i>
+              </span>
+              <input #career="ngModel" type="text" class="form-control" [(ngModel)]="user_career" id="career" name="career" roleId="career"
+                placeholder="Enter your career" required="required" minlength="3" maxlength="30" />
+            </div>
+            <div *ngIf="career?.errors && (career?.dirty || career?.touched)" class="alert alert-danger">
+              <div [hidden]="!career.errors.required">
+                Career is required!
+              </div>
+              <div [hidden]="!career?.errors.minlength">
+                Career must be at least 5 characters long.
+              </div>
+              <div [hidden]="!career?.errors.maxlength">
+                Career cannot be more than 30 characters long.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status" class="cols-sm-2 control-label">Status</label>
+          <div class="cols-sm-10">
+            <label class="switch">
+              <input type="checkbox" [checked]="status" [(ngModel)]="status" id="status" name="status" roleId="status" />
+              <span class="slider round"></span>
+            </label>
+
+          </div>
+        </div>
+
+        <div class="form-group ">
+          <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary btn-block ">Add User</button>
+        </div>
+
+      </form>
+      <div class="alert alert-warning" [hidden]="alertStatus">
+        <strong>Adding error!</strong>
+        <br>
+        <p *ngFor="let errorObj of addingErrorMsg">
+          {{errorObj['msg']}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
